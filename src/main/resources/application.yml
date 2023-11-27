@@ -1,0 +1,41 @@
+spring:
+  profiles:
+    active: prod
+    group:
+      dev: common,local
+      prod: common,build
+---
+spring:
+  config:
+    activate:
+      on-profile: common
+  data:
+    redis:
+      port: 6379
+      host: localhost
+      maxmemory: 128M
+
+---
+spring:
+  config:
+    activate:
+      on-profile: build
+logging:
+  level:
+    root: WARN
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+logging:
+  level:
+    root: INFO
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+logging:
+  level:
+    root: DEBUG
